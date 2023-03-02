@@ -9,7 +9,7 @@ class CreatePost(BaseModel):
     owner_id: str
 
 
-def validate_create_post(json_data):
+def validate(json_data):
     try:
         post_schema = CreatePost(**json_data)
         return post_schema.dict()

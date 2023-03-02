@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask.views import MethodView
 from sqlalchemy.exc import IntegrityError
 from models import Session, Ads
-from schema import validate_create_post
+from schema import validate
 from models import HttpError
 
 app = Flask('my_app')
@@ -35,7 +35,7 @@ class PostView(MethodView):
                 'owner_id': post.owner_id, })
 
     def post(self):
-        json_data = validate_create_post(request.json)
+        json_data = validate(request.json)
 
         with Session() as session:
             new_post = Ads(**json_data)
